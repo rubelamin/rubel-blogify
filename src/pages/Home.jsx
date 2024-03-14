@@ -90,9 +90,6 @@ export default function Home() {
 			</div>
 		);
 
-	console.log(hasMore);
-	console.log(loadingRef);
-
 	return (
 		<>
 			<main>
@@ -110,12 +107,14 @@ export default function Home() {
 									))}
 
 									{hasMore && (
-										<div
-											ref={loadingRef}
-											id="loadMore"
-											className="flex w-full items-center justify-center"
-										>
-											<Loading />
+										<div>
+											<div
+												ref={loadingRef}
+												className="flex w-full items-center justify-center"
+											>
+												<Loading />
+												<p>Blogs are loading...</p>
+											</div>
 										</div>
 									)}
 								</div>
