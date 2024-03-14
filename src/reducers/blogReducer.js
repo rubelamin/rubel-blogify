@@ -15,6 +15,11 @@ const blogReducer = (state, action) => {
 				...state,
 				loading: true,
 			};
+		case actions.blog.DATA_NOT_FETCHING:
+			return {
+				...state,
+				loading: false,
+			};
 
 		case actions.blog.DATA_FETCHED:
 			return {

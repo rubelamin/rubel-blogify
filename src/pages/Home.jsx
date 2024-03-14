@@ -26,9 +26,8 @@ export default function Home() {
 	}, [dispatch]);
 
 	useEffect(() => {
-		// dispatch({ type: actions.blog.DATA_FETCHING });
-
 		const fetchBlog = async () => {
+			dispatch({ type: actions.blog.DATA_FETCHING });
 			try {
 				const response = await api.get(
 					`${
@@ -36,8 +35,9 @@ export default function Home() {
 					}/blogs?page=${page}&limit=10`
 				);
 
-				if (response.data.blogs.length === 0) {
+				if (response?.data?.blogs?.length === 0) {
 					setHasMore(false);
+					dispatch({ type: actions.blog.DATA_NOT_FETCHING });
 				} else {
 					dispatch({
 						type: actions.blog.DATA_FETCHED,
@@ -47,7 +47,6 @@ export default function Home() {
 					setPage((prevP) => prevP + 1);
 				}
 			} catch (error) {
-				console.error(error);
 				dispatch({
 					type: actions.blog.DATA_ERROR,
 					error: error.message,
@@ -62,6 +61,7 @@ export default function Home() {
 				fetchBlog();
 			}
 		};
+
 		const observer = new IntersectionObserver(onIntersection);
 
 		if (observer && loadingRef.current) {
@@ -90,6 +90,9 @@ export default function Home() {
 			</div>
 		);
 
+	console.log(hasMore);
+	console.log(loadingRef);
+
 	return (
 		<>
 			<main>
@@ -109,6 +112,7 @@ export default function Home() {
 									{hasMore && (
 										<div
 											ref={loadingRef}
+											id="loadMore"
 											className="flex w-full items-center justify-center"
 										>
 											<Loading />

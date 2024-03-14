@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { createPortal } from "react-dom";
 import { Link } from "react-router-dom";
 import searchIcon from "../assets/icons/search.svg";
 import lwsLogo from "../assets/logo.svg";
@@ -12,9 +13,11 @@ export default function Header() {
 
 	return (
 		<>
-			{showSearchModal && (
-				<SearchModal setShowSearchModal={setShowSearchModal} />
-			)}
+			{showSearchModal &&
+				createPortal(
+					<SearchModal setShowSearchModal={setShowSearchModal} />,
+					document.body
+				)}
 			<header>
 				<nav className="container">
 					<div>

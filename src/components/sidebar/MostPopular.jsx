@@ -14,8 +14,8 @@ export default function MostPopular() {
 				setLoading(true);
 				const response = await api.get("/blogs/popular");
 
-				if (response.status === 200) {
-					setPopularBlogs(response.data.blogs);
+				if (response?.status === 200) {
+					setPopularBlogs(response?.data?.blogs);
 					setLoading(false);
 				}
 			} catch (error) {

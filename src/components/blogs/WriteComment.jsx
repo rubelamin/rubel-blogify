@@ -51,8 +51,8 @@ export default function WriteComment({ details }) {
 	return (
 		<div className="relative flex items -center space-x-4">
 			{!auth?.user && (
-				<div className="absolute flex w-full h-full bg-slate-500 opacity-50 z-10 justify-center items-center">
-					<p className="text-white">
+				<div className="absolute flex w-full h-full -mt-3 ml-2 rounded bg-slate-500 opacity-50 z-10 justify-center items-center">
+					<p className="text-[#030317]">
 						Please login first <Link to={"/login"}>Login Here</Link>
 					</p>
 				</div>
